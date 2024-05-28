@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <iostream>
 
-// #include "receiver/project/include/main.h"
-#include "transmitter/project/include/main.h"
+// #include "receiver/include/main.h"
+#include "transmitter/include/main.h"
 
 int main(int argc, char const *argv[])
 {
