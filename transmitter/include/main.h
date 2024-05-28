@@ -11,25 +11,26 @@
 
 std::array<std::vector<double>, 3> transmit(const std::vector<int> &msg)
 {
-    std::cerr << "message received" << std::endl;
+    std::cerr << "Transmitter: message received" << std::endl;
     if (msg.empty())
     {
-        std::cerr << "bad input. message is empty" << std::endl;
+        std::cerr << "Transmitter: bad input. message is empty" << std::endl;
         return {};
     }
 
-    double dt_ = 0.01;
+    double dt_ = 0.001;
+    double transition_ = 3.;
 
     transmitter22a instance_;
     instance_.initialize();
     instance_.getRTM()->Timing.stepSize0 = dt_;
 
     std::array<std::vector<double>, 3> result;
-    const size_t time_lag = static_cast<int>(std::floor(2. / dt_));
+    const size_t time_lag = static_cast<int>(std::floor(transition_ / dt_));
     size_t lag_counter = 0;
     size_t i = 0;
 
-    std::cerr << "transmit signal... it will take " << msg.size() * 2 << " seconds" << std::endl;
+    std::cerr << "Transmitter: transmit signal... it will take " << msg.size() * transition_ << " seconds" << std::endl;
     while (i < msg.size() &&
            rtmGetErrorStatus(instance_.getRTM()) == NULL &&
            !rtmGetStopRequested(instance_.getRTM()))
@@ -48,7 +49,7 @@ std::array<std::vector<double>, 3> transmit(const std::vector<int> &msg)
         std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(std::floor(dt_ * 1e3))));
     }
 
-    std::cerr << "done. result size: " << result.size() << std::endl
+    std::cerr << "Transmitter: done. result size: " << result.size() << std::endl
               << std::endl;
     instance_.terminate();
     return result;
