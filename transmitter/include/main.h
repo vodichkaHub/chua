@@ -27,7 +27,7 @@ std::array<std::vector<double>, 3> transmit(const std::vector<int> &msg)
     }
 
     double dt_ = 0.001;
-    double transition_ = 4.;
+    double transition_ = 8.;
 
     transmitter22a instance_;
     instance_.initialize();
@@ -55,7 +55,7 @@ std::array<std::vector<double>, 3> transmit(const std::vector<int> &msg)
             i++;
         }
         instance_.step();
-        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(std::floor(dt_ * 1e3))));
+        // std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(std::floor(dt_ * 1e3))));
     }
 
     std::cerr << std::endl << "Transmitter: done"  << std::endl

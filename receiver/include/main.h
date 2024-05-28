@@ -26,7 +26,7 @@ std::vector<int> observe(const std::vector<double> &x1, const std::vector<double
     }
 
     double dt_ = 0.001;
-    double transition_ = 4.;
+    double transition_ = 8.;
 
     receiver22a instance_;
     instance_.initialize();
@@ -54,7 +54,7 @@ std::vector<int> observe(const std::vector<double> &x1, const std::vector<double
             result.push_back(std::round(instance_.receiver22a_Y.payload_estimation));
         }
         instance_.step();
-        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(std::floor(dt_ * 1e3))));
+        // std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(std::floor(dt_ * 1e3))));
     }
     std::cerr << std::endl << "Receiver: done. result size: " << result.size() << std::endl
               << std::endl;
