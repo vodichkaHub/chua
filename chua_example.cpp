@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
         data = input["signal"].as<std::vector<int>>();
 
     auto signal = transmit(data);
-    auto estimation = observe(signal[0], signal[1], signal[2]);
+    auto restored = observe(signal[0], signal[1], signal[2]);
 
     std::ofstream out_encrypted;
     out_encrypted.open("encrypted_signal.yaml");
@@ -42,16 +42,16 @@ int main(int argc, char const *argv[])
     write_signal(out_encrypted, signal[2], "x3");
     out_encrypted.close();
     
-    std::ofstream out_estimation;
-    out_estimation.open("estimation_signal.yaml");
-    out_estimation << "estimation: [";
-    for (const auto  &s  : estimation) {
-        out_estimation << s;
-        if (&s !=  &estimation.back())
-            out_estimation << ",";
+    std::ofstream out_restored;
+    out_restored.open("restored_signal.yaml");
+    out_restored << "restored: [";
+    for (const auto  &s  : restored) {
+        out_restored << s;
+        if (&s !=  &restored.back())
+            out_restored << ",";
     }
-    out_estimation << "]"  << std::endl;
-    out_estimation.close();
+    out_restored << "]"  << std::endl;
+    out_restored.close();
 
     return 0;
 }
