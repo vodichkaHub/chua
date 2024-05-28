@@ -6,7 +6,6 @@
 #include <array>
 #include <iostream>
 #include <thread>
-#include <boost/python.hpp>
 
 #include "../transmitter22a.h"
 
@@ -60,16 +59,6 @@ public:
         return result;
     };
 };
-
-void greet()
-{
-    std::cout << "Hello, World!" << std::endl;
-}
-BOOST_PYTHON_MODULE(hello_ext)
-{
-    using namespace boost::python;
-    def("greet", greet);
-}
 
 // extern "C" {
 //     Transmitter* Transmitter_new(){ return new Transmitter(); }
