@@ -3,6 +3,7 @@
 
 #include "receiver/include/main.h"
 #include "transmitter/include/main.h"
+#include "yaml-cpp/yaml.h"
 
 int main(int argc, char const *argv[])
 {
@@ -10,8 +11,6 @@ int main(int argc, char const *argv[])
     auto signal = transmit(data);
 
     auto estimation = observe(signal[0], signal[1], signal[2]);
-    for (int b : estimation)
-        std::cout << b <<  " ";
 
     return 0;
 }
