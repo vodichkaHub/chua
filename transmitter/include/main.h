@@ -26,7 +26,7 @@ public:
         instance_.terminate();
     };
 
-    inline std::array<std::vector<double>, 3> transmit(const std::vector<std::uint8_t> &msg) {
+    inline std::array<std::vector<double>, 3> transmit(const std::vector<int> &msg) {
         std::cerr << "message received"  <<  std::endl;
         if (msg.empty()) {
             std::cerr << "bad input. message is empty"  <<  std::endl;

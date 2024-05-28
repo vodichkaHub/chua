@@ -25,15 +25,15 @@ public:
         instance_.terminate();
     };
 
-    inline std::vector<uint8_t> observe(const std::vector<double> &x1, const std::vector<double> &x2, const std::vector<double> &x3)
+    inline std::vector<int> observe(const std::vector<double> &x1, const std::vector<double> &x2, const std::vector<double> &x3)
     {
         std::cerr << "signal received" <<  std::endl;
         if (x1.size()!= x2.size() || x1.size()!= x3.size()) {
             std::cerr << "bad signal. input size mismatch"  <<  std::endl;
-            return std::vector<uint8_t>();
+            return std::vector<int>();
         }
 
-        std::vector<uint8_t> result;
+        std::vector<int> result;
         const size_t time_lag = static_cast<int>(std::floor(2. / dt_));
         size_t lag_counter=0;
         size_t i=0;
@@ -50,7 +50,7 @@ public:
             if (lag_counter >= time_lag)
             {
                 lag_counter=0;
-                result.push_back(static_cast<int>(std::round(instance_.receiver22a_Y.payload_estimation)));
+                result.push_back(std::round(instance_.receiver22a_Y.payload_estimation));
             }
             instance_.step();
             std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(std::floor(dt_ * 1e3))));
