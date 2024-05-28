@@ -36,11 +36,22 @@ int main(int argc, char const *argv[])
     auto estimation = observe(signal[0], signal[1], signal[2]);
 
     std::ofstream out_encrypted;
-    out_encrypted.open("../encrypted_signal.yaml");
+    out_encrypted.open("encrypted_signal.yaml");
     write_signal(out_encrypted, signal[0], "x1");
     write_signal(out_encrypted, signal[1], "x2");
     write_signal(out_encrypted, signal[2], "x3");
     out_encrypted.close();
+    
+    std::ofstream out_estimation;
+    out_estimation.open("estimation_signal.yaml");
+    out_estimation << "estimation: [";
+    for (const auto  &s  : estimation) {
+        out_estimation << s;
+        if (&s !=  &estimation.back())
+            out_estimation << ",";
+    }
+    out_estimation << "]"  << std::endl;
+    out_estimation.close();
 
     return 0;
 }
