@@ -1,0 +1,3 @@
+/home/vodichka/Downloads/CHUAv2/transmitter/project/build/CMakeFiles/rebuild_cache.dir
+/home/vodichka/Downloads/CHUAv2/transmitter/project/build/CMakeFiles/edit_cache.dir
+/home/vodichka/Downloads/CHUAv2/transmitter/project/build/CMakeFiles/Transmitter-v1.dir

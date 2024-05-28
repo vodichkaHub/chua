@@ -1,0 +1,3 @@
+/home/vodichka/Downloads/CHUAv2/receiver/project/build/CMakeFiles/rebuild_cache.dir
+/home/vodichka/Downloads/CHUAv2/receiver/project/build/CMakeFiles/edit_cache.dir
+/home/vodichka/Downloads/CHUAv2/receiver/project/build/CMakeFiles/libReceiver-v1.dir
