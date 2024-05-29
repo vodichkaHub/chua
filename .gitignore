@@ -2,3 +2,4 @@
 build
 receiver/.vscode
 transmitter/.vscode
+python_scripts/__pycache__
