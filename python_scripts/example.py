@@ -8,17 +8,19 @@ cur_dir = os.path.dirname(os.path.realpath(__file__))
 # SET INPUT DATA HERE
 data_to_transmit = {'signal': [1,0,1,0,1,0]}
 
-# WRITE INPUT DATA TO A FILE
 input_filename = os.path.join(cur_dir, 'input_signal.yaml')
+chanel_signal_filename=  os.path.join(cur_dir, '..', 'encrypted_signal.yaml')
+restored_signal_filename=  os.path.join(cur_dir, '..', 'restored_signal.yaml')
+
+# WRITE INPUT DATA TO A FILE
 with open(input_filename, 'w') as stream:
     yaml.dump(data_to_transmit, stream)
 
 # CALL EXECUTABLE SIMULNIK MODEL HERE. IT TAKES SOME TIME
 exec_filename  =  os.path.join(cur_dir, '..', 'build', 'example')
-subprocess.call([exec_filename, input_filename])
+subprocess.call([exec_filename, input_filename, chanel_signal_filename, restored_signal_filename])
 
 # READ RESTORED SIGNAL HERE
-restored_signal_filename=  os.path.join(cur_dir, '..', 'restored_signal.yaml')
 restored_data = []
 with open(restored_signal_filename, 'r') as stream:
     restored_data = yaml.safe_load(stream)['restored']
@@ -28,7 +30,6 @@ print(data_to_transmit['signal'])
 print(restored_data)
 
 # READ ENCRYPTED SIGNAL HERE
-chanel_signal_filename=  os.path.join(cur_dir, '..', 'encrypted_signal.yaml')
 chanel_data = [[],[],[]]
 with open(chanel_signal_filename, 'r') as stream:
     yaml_data = yaml.safe_load(stream)

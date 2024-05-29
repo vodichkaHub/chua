@@ -21,7 +21,7 @@ void write_signal(std::ofstream &f, std::vector<double> signal, std::string name
 
 int main(int argc, char const *argv[])
 {
-    if (argc < 2)
+    if (argc < 4)
     {
         std::cerr << "No input file path!" << std::endl;
         return 1;
@@ -36,14 +36,14 @@ int main(int argc, char const *argv[])
     auto restored = observe(signal[0], signal[1], signal[2]);
 
     std::ofstream out_encrypted;
-    out_encrypted.open("encrypted_signal.yaml");
+    out_encrypted.open(argv[2]);
     write_signal(out_encrypted, signal[0], "x1");
     write_signal(out_encrypted, signal[1], "x2");
     write_signal(out_encrypted, signal[2], "x3");
     out_encrypted.close();
     
     std::ofstream out_restored;
-    out_restored.open("restored_signal.yaml");
+    out_restored.open(argv[3]);
     out_restored << "restored: [";
     for (const auto  &s  : restored) {
         out_restored << s;
